@@ -22,6 +22,10 @@
     padding: 8px 10px;
     border-radius: 3px 0px 0px 3px;
 }
+.sidebar-option.active{
+    background-color: #fff0ed;
+    border-color: tomato;
+}
 
 @media (max-width: 900px ){
     .sidebar-option p{
