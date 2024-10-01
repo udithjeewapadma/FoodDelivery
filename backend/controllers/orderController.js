@@ -6,7 +6,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 //placing user order for frontend
 const placeOrder = async (req, res) => {
-  const frontend_url = "http://localhost:5173";
+  const frontend_url = "http://localhost:5174";
   const USD_TO_LKR_CONVERSION_RATE = 300;  
 
   try {
@@ -95,4 +95,16 @@ const listOrders = async (req,res) => {
   }
 }
 
-export { placeOrder, verifyOrder,userOrders,listOrders};
+//api for update order status
+const updateStatus = async (req,res) => {
+  try {
+    await orderModel.findByIdAndUpdate(req.body.orderId,{status: req.body.status});
+    res.json({success:true, message:"Order status updated"})
+  } catch (error) {
+    console.log(error)
+    res.json({success:false, message:"Error updating order status"})
+  }
+}
+
+
+export { placeOrder, verifyOrder,userOrders,listOrders,updateStatus};
